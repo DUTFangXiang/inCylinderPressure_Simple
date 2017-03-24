@@ -1,0 +1,746 @@
+#ifndef DRAWCOOR_H_
+#define DRAWCOOR_H_
+//----------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Graphics.hpp>
+#include <ExtCtrls.hpp>
+#include <stdio.h>
+#include "lrwenum.h"
+#include "lFormMain.h"
+#include "MaxInfo.h"
+
+class CReadString
+{
+	char DataString[700];
+	char Temp[150];
+public:
+//	void GetColumnData(char* str,double&Data,int num);
+	void GetData(char* str,float* Data,int num);
+        void GetData(char* str,double* Data,int num);
+	void LTrimLeft(void);
+	void GetNextString(void);
+	
+};
+
+
+class LDrawCurve
+{
+protected:
+        float fOilGain;
+        float sfGConst[9];
+        float sgfFrequency[22];
+        int siStartPosi;
+        float flLowPeak;
+        float flHighPeak;
+        float flLowPeriod;
+        float flHighPeriod;
+        float flLowCoef;
+        float flHighCoef;
+        float flLastFormCoef;
+        bool  bFault;
+		bool bStartLine;
+        bool bRealPipe;
+        bool bResult;
+        bool bZeroLine;
+        int iStartPosi;
+        bool bCombustion;
+        int iDrawRgStart,iDrawRgEnd;
+        char strXTitle[50],strYTitle[50];
+        char strTitle[100];
+        char * cData;
+        int iDataLength;
+        float *fXData;
+        float *fYData;
+        float *fPData;      //用于指向油管压力的数据指针
+        float *fCPData;     //用于指向气缸压力的数据指针
+        bool bDrawPWave;    //用于表明是否绘制油管压力波形
+        bool bDrawCWave;    //用于表明是否绘制气缸压力波形
+        int iDrawStart,iDrawEnd;
+        int bTwoInfo; //X和Y坐标轴要同时处理
+        TColor clLineColor;
+        TColor clBkColor;
+        TColor clTextColor;
+        bool bFixYMax,bLabelSign,bNumSign,bMemoryAllocated,bShowTitle;
+        bool bDrawDirection,bMinZero,bDrawText;
+        int iDeviceType; //0:TPrinter   1:TPaintBox   2:TImage
+        int iSymbol;
+        TRect OuterRect;
+        int iXMin,iXMax,iYMin,iYMax,iYMiddle;
+        float fXDataMin,fXDataMax,fYDataMax,fYDataMin;
+        float fXStep,fYStep;
+        float fYEnlargement;
+        float fDeltaTime;
+        int iX,iY;
+        lFileHeadStruct lfhs;
+        int xxseg,xxsegnum,yysegnum;
+        int iTrainType;
+    	float yyseg;
+        int iLineTypeIndex;
+        int iLineWidthIndex;
+        char strTrainNum[6];
+        int iDieselNum;
+        int xPrecision,yPrecision;
+        int iPrnSign,iFontSize,iFontHeight;
+        AnsiString strDrawText;
+        float fLevel[3];
+        bool bLevel;
+        int iDrawTimes;
+        bool bMMValue,bFromBegining;
+        bool bShowInfo;
+        TRect rectDraw;
+        TCanvas* ptCanvas;
+        float ffLevel;
+        int iLabelFormat;
+        bool bDrawGrid;
+        float sfPeakLevel;
+        float sfWavePeak;
+        float sfWavePeriod;
+        float sfWaveFormCoef;
+        float sfLastFormCoef;
+        float sfMainMax;
+        float sfTimeInterval;
+        float fYVDataMax;
+        int siEndposi;
+        int iAllDrawKind;
+     float flArray[300],flNorm[300];
+         FILE* pipeDatafp;
+         float fGauge;
+         bool sbCPeak;
+         bool sbCPeriod;
+         bool sbCCoef;
+         bool sbGaugeAdjust;
+         bool bXLogValue,bYLogValue;
+         float fXMin,fXMax,fYMin,fYMax;
+         float fXPFactor,fYPFactor;
+         int iPLength;
+         int iPrintHeight;
+         bool bTDCDraw;
+         int  iTDCPosi;
+         int  iDrawLineWidth;
+         bool bDifferentColor;
+         TColor clColor1;
+         TColor clColor2;
+         TColor clColor3;
+         TColor clColor4;
+         bool bXVolumn;
+         bool bSolidYMax;
+         float fPOilMin,fPOilMax;
+         float fCylinderPMin,fCylinderPMax;
+         float fEngineSpeed;
+// 2005_01_11
+//新添3D功能
+//以下是三维绘图中要用到的变量
+        TColor CURVECOLOR[16];
+         float fAlpha;          //X轴与水平线所成的角度
+         float fBata;           //y轴与水平线所成的角度
+         int   iZMin,     iZMax;     //Z轴的最大值及最小值
+         int   iX0PStep,  iY0PStep;
+         int   iX0Posi,   iY0Posi; //坐标原点所在的位置
+         float fZDataMin, fZDataMax;  //Z轴的数据最大值及最小值
+         int   iAxisLength;          //坐标轴的长度
+         float **fZData;             //用于指向Z方向的数据数组
+         int   iXLength,  iYLength;
+         bool  bAxisManu ;
+         int   siFFTLen;
+         TRect rectTime, rectValue,rectMaxValue,rectCutValue,rectSingle;
+         int   iXTimeInterval,iYTimeInterval;
+         int  iCutPosi;
+         bool  bShowCut;
+         float fStartAngle;
+         bool  bYAxisHalf;
+         int   iSelectedItem;
+         int  iY3DInterval;
+         int  iOilPosi;
+         int  iCombustionPosi;
+         bool bCompare;   //多个图形进行对比
+         bool bMerge;     //多个图形叠在一起
+         int  iCurveIndex;
+         AnsiString strTime;
+
+        AnsiString strBasicFontName;
+        int        iBasicFontSize;
+        bool       bShowMax;
+        bool       bBasicFSBold;
+        bool       bBasicFSItalic;
+        bool       bBasicFSUnderline;
+        bool       bBasicFSStrikeOut;
+        TColor     clBasicFSColor;
+        bool       bDrawBasicCurve;
+        bool       bDrawDetect;
+        int        iPointPosi;
+        bool       bPSTDrawAll;       //用于决定是否将图形绘制在一起
+        int        iPSTCurveIndex;    //用于设置当前绘制的是第几个波形
+        AnsiString strTrainType;      //机车车型
+        AnsiString strTrainNumber;    //机车车号
+        AnsiString strMDate;          //测量时间
+
+
+public:
+        void __fastcall SetbDrawDetect( bool bdd)
+        {
+            bDrawDetect = bdd;
+        };
+        void __fastcall SetfOilGain(float fog)
+        {
+            fOilGain = fog;
+        };
+        void __fastcall SetstrMDate( AnsiString& str)
+        {
+            strMDate = str;
+        };
+        void __fastcall SetstrTrainNumber(AnsiString& str)
+        {
+            strTrainNumber = str;
+        };
+        void __fastcall SetstrTrainType(AnsiString& str)
+        {
+            strTrainType = str;
+        };
+        void __fastcall SetPSTDrawInfo( bool bPST, int index)
+        {
+            bPSTDrawAll = bPST;
+            iPSTCurveIndex = index;
+        };
+        void __fastcall SetbCombustion(bool bc)
+        {
+            bCombustion = bc;
+        };
+        void __fastcall SetbDrawBasicCurve(bool bDBC)
+        {
+            bDrawBasicCurve = bDBC;
+        };
+        void __fastcall SetstrTime(AnsiString strtt);
+       
+        void __fastcall SetfEngineSpeed(float fes)
+        {
+            fEngineSpeed = fes;
+        };
+        void __fastcall SetbMerge( bool bmg, int index)
+        {
+            bMerge      = bmg;
+            iCurveIndex = index;
+        };
+        void __fastcall SetbDifferentColor(bool bdc)
+        {
+            bDifferentColor = bdc;
+        };
+        void __fastcall SetbCompare(bool bc)
+        {
+            bCompare = bc;
+        };
+//------这些函数用于绘制三维图形 --------------------------------
+        void __fastcall SetiY3DInterval(int iyi)
+        {
+            iY3DInterval = iyi;
+        };
+        void __fastcall SetiSelectedItem(int isi)
+        {
+            iSelectedItem = isi;
+        };
+        void __fastcall  SetiChoiceRange(int ist,int iend)
+        {
+            iDrawRgStart = ist;
+            iDrawRgEnd   = iend;
+        };
+        void __fastcall  SetbYAxisHalf(bool byah)
+        {
+            bYAxisHalf = byah;
+        };
+        void __fastcall  SetfStartAngle(float fsa)
+        {
+            fStartAngle = fsa;
+        };
+        void __fastcall  SetrectTime(TRect& rect)
+        {
+            rectTime = rect;
+        };
+        void __fastcall  SetrectValue(TRect& rect)
+        {
+            rectValue = rect;
+        };
+        void __fastcall  SetrectMaxValue(TRect& rect)
+        {
+            rectMaxValue = rect;
+        };
+        void __fastcall  SetrectCutValue(TRect& rect)
+        {
+            rectCutValue = rect;
+        };
+        void __fastcall SetrectSingle(TRect& rect)
+        {
+            rectSingle = rect;
+        };
+        void __fastcall SetbShowCut( bool bsc )
+        {
+            bShowCut = bsc;
+        }
+        void __fastcall SetiCutPosi(int icp)
+        {
+            iCutPosi = icp;
+        };
+        void __fastcall SetiXYInterval(int ixi, int iyi)
+        {
+            iXTimeInterval  = ixi;
+            iYTimeInterval  = iyi;
+        };
+        void __fastcall SetiXY0Step(int ix,int iy)
+        {
+            iX0PStep = ix;
+            iY0PStep = iy;
+        };
+        void __fastcall SetfZDataMinMax(float fzmin,float fzmax)
+        {
+            fZDataMin = fzmin;
+            fZDataMax = fzmax;
+        };
+        void __fastcall SetiXY0Posi(int ix,int iy)
+        {
+            iX0Posi = ix;
+            iY0Posi = iy;
+        };
+        void __fastcall SetiAngle(float fa,float fb)
+        {
+            fAlpha = fa;
+            fBata = fb;
+        };
+        void __fastcall SetiX0Y0Posi(int ix0, int iy0)
+        {
+            iX0Posi = ix0;
+            iY0Posi = iy0;
+        };
+        void __fastcall SetiAxisLength(int ixlen,int iylen)
+        {
+            iXLength = ixlen;
+            iYLength = iylen;
+            if((iXLength == 0)||(iYLength ==0))
+            {
+                bAxisManu = false;
+            }
+            else
+            {
+                bAxisManu = true;
+            }
+
+        };
+        void __fastcall GetiAxisLength(int &ixlen,int &iylen)
+        {
+            ixlen = iXLength;
+            iylen = iYLength; 
+        };
+//----------------------------------------------------------------
+        void __fastcall GetXYInfo( int &ixmin, int &ixmax, int &iymin, int &iymax)
+        {
+            ixmin = iXMin;
+            ixmax = iXMax;
+            iymin = iYMin;
+            iymax = iYMax;
+        };
+        void __fastcall SetfPMinMax(float fmin, float fmax)
+        {
+            fPOilMin = fmin;
+            fPOilMax = fmax;
+        };
+        void __fastcall SetfCPMinMax(float fmin,float fmax)
+        {
+            fCylinderPMin = fmin;
+            fCylinderPMax = fmax;
+        };
+        void __fastcall SetfPWaveData(float* fpp)  //用于设置压力波数据
+        {
+            fPData = fpp;
+        };
+        void __fastcall SetbShowMax( bool bsh)
+        {
+            bShowMax = bsh;
+        };
+
+        void __fastcall SetOilParametes(bool bshow, float fpeak, float fperiod, float fcoef)
+        {
+            bShowMax        = bshow;
+            sfWavePeak      = fpeak;
+            sfWavePeriod    = fperiod;
+            sfWaveFormCoef  = fcoef;
+        };
+        void __fastcall SetfCPData(float* fcp)
+        {
+            fCPData = fcp;
+        };
+        void __fastcall SetbDrawCWave(bool bdcw)
+        {
+            bDrawCWave = bdcw;
+        };
+        void __fastcall SetbDrawPWave(bool bdpw)
+        {
+            bDrawPWave = bdpw;
+        };
+        void __fastcall SetiAllDrawKind(int iadk)
+        {
+            iAllDrawKind = iadk;
+        };
+        void __fastcall SetbSolidYMax(bool bsym)
+        {
+            bSolidYMax = bsym;
+        };
+        void __fastcall SetbXVolumn(bool bxv)
+        {
+            bXVolumn = bxv;
+        };
+        void __fastcall SetiDrawLineWidth(int idlw)
+        {
+            iDrawLineWidth = idlw;
+        };
+
+        void __fastcall SetfPFactor(float fx,float fy);
+
+        void __fastcall SetiPrintHeight(int iph)
+        {
+            iPrintHeight = iph;
+        };
+        void __fastcall SetiDataLength(int ilen)
+        {
+            iPLength = ilen;
+        };
+        void __fastcall SetfYVDataMax(float vm)
+        {
+            fYVDataMax = vm;
+        };
+        void __fastcall SetbLogValue(bool blx,bool bly)
+        {
+            bXLogValue = blx;
+            bYLogValue = bly;
+        };
+        void __fastcall SetfXMinMax(float fmin,float fmax)
+        {
+            fXMin = fmin;
+            fXMax = fmax;
+        };
+        void __fastcall SetfYMinMax(float fmin,float fmax)
+        {
+            fYMin = fmin;
+            fYMax = fmax;
+        };
+       void __fastcall SetsgfFrequency(float* fc,int n);
+       void __fastcall SetsfGConst(float* fg,int n);
+       void __fastcall SetsfPeakLevel(float fpl)
+       {
+            sfPeakLevel = fpl;
+       };
+       void __fastcall SetsbGaugeAdjust(bool bga)
+       {
+            sbGaugeAdjust = bga;
+       };
+       void __fastcall SetsbC(bool bpk,bool bpd,bool bcf)
+       {
+            sbCPeak = bpk;
+            sbCPeriod = bpd;
+            sbCCoef = bcf;
+       };
+       void __fastcall SetbResult(bool br)
+       {
+            bResult=br;
+       };
+       void __fastcall SetiTrainType(int itt)
+       {
+            iTrainType = itt;
+       };
+       void __fastcall SetfParams(float fp1,float fp2,float fp3,float fp4,float fp5,float fp6,float fp7)
+       {
+            flLowPeak        = fp1;
+            flHighPeak       = fp2;
+            flLowPeriod      = fp3;
+            flHighPeriod     = fp4;
+            flLowCoef        = fp5;
+            flHighCoef       = fp6;
+            flLastFormCoef   = fp7;
+       };
+
+       void __fastcall SetfGauge(int tt,float fg)
+       {
+            fGauge=(1.0+sfGConst[tt])/(1.0+fg/5.0);
+       };
+
+        void __fastcall SetbShowInfo(bool si)
+        {
+            bShowInfo=si;
+        };
+        void __fastcall SetbDrawGrid(bool vdg)
+        {
+            bDrawGrid=vdg;
+        };
+        void __fastcall SetiLabelFormat(int ibb)
+        {
+            iLabelFormat = ibb;
+        };
+        void __fastcall SetbRealPipe(bool rp)
+        {
+            bRealPipe    = rp;
+        };
+		void __fastcall SetbSymbol(int sb)
+        {
+        	iSymbol      = sb;
+        };
+		void __fastcall SetStart(bool bs,int ip)
+        {
+          	bStartLine   = bs;
+        	iStartPosi   = ip;
+        };
+		void __fastcall SetbFromBegining(bool fb)
+        {
+        	bFromBegining = fb;
+        };
+		void __fastcall SetfDeltaTime(float dt)
+        {
+        	fDeltaTime = dt;
+        };
+		void __fastcall GetiYMiddle(int& im)
+        {
+        	im = iYMiddle;
+        }
+		void __fastcall GetRect(TRect& rect)
+        {
+        	rect = rectDraw;
+        }
+	    void __fastcall GetXYStep(float &xstep,float & ystep)
+        {
+            if(bLabelSign)
+            {
+        	    xstep = fXStep*(fXData[iDrawRgStart+1]-fXData[iDrawRgStart]);
+            }
+            else
+            {
+                xstep = fXStep;
+            }
+            ystep = fYStep;
+        }
+		void __fastcall SetfMMValue(float fmin,float fmax)
+        {
+        	fYDataMin = fmin;
+            fYDataMax = fmax;
+            bMMValue  = true;
+        }
+		void __fastcall SetbLevel(bool bl)
+        {
+        	bLevel = bl;
+        }
+		void __fastcall SetstrDrawText(AnsiString& sdt)
+        {
+        	strDrawText=sdt;
+        }
+		void __fastcall SetbFixYMax(bool bf)
+        {
+        	bFixYMax=bf;
+        }
+        void __fastcall SetbDrawText(bool dt)
+        {
+        	bDrawText=dt;
+        }
+        void __fastcall SetiDeviceType(int pp)
+        {
+                iDeviceType     = pp;
+                if(iDeviceType == 0)
+                {
+                     iPrnSign=-1;
+                }
+                else
+                {
+                     iPrnSign=1;
+                }
+
+        };
+        void __fastcall SetbMinZero(bool bz)
+        {
+                bMinZero=bz;
+        };
+        void __fastcall SetbDrawDirection(bool dd)
+        {
+                bDrawDirection=dd;
+        };
+        void __fastcall SetXYPrecision(int xp,int yp)
+        {
+                xPrecision = xp;
+                yPrecision = yp;
+        }
+        void __fastcall SetXYLabel(char *xlabel,char *ylabel)
+        {
+               strcpy(strXTitle,xlabel);
+               strcpy(strYTitle,ylabel);
+        }
+        void __fastcall SetbShowTitle(bool bs)
+        {
+                bShowTitle=bs;
+        };
+        void __fastcall SetTitle(const char* title)
+        {
+                strcpy(strTitle,title);
+        }
+        void __fastcall SetTrainInfo(char* trainnum,int dieselnum)
+        {
+                strcpy(strTrainNum,trainnum);
+                iDieselNum = dieselnum;
+                int ll  = strlen(strTrainNum);
+                strTrainNum[4] = '\0';
+                if( bPSTDrawAll)
+                {
+                    sprintf(strTitle,"车号:%s;\0",strTrainNum);
+                }
+                else
+                {
+                    sprintf(strTitle,"车号:%s; 缸号:%d\0",strTrainNum,iDieselNum);
+                }
+        }
+        void __fastcall SetIndex(int ltIndex,int lwIndex)
+        {
+                iLineTypeIndex=ltIndex;
+                iLineWidthIndex=lwIndex;
+        };
+        __fastcall LDrawCurve(void);
+        __fastcall ~LDrawCurve();
+        void __fastcall SetData(int *fydata,int len,float fkhz);
+        void __fastcall SetData(char* fydata,int len,float fkhz);
+        void __fastcall SetData(float* fydata,int len,float fkhz);
+        void __fastcall SetData(const float& fInt,float*ydata,int istart,int iend);
+        void __fastcall GetCoorSegment(int imin,int imax,int & iseg);
+        void __fastcall DrawCoor(TObject *Sender);
+        void __fastcall CalculateCoor(void);
+        void __fastcall DrawCurve(TObject *Sender);
+        void __fastcall DrawLabel(TObject* Sender);
+
+        void __fastcall SetZeroLine(bool bzl)
+        {
+            bZeroLine = bzl;
+        };
+        void __fastcall SetFontSize(int isize)
+        {
+        	iFontSize=isize;
+        }
+
+
+        void __fastcall SetColor(TColor lc,TColor bc,TColor tc)
+        {
+                clLineColor = lc;
+                clBkColor   = bc;
+                clTextColor = tc;
+        };
+        void __fastcall SetDrawCoef(bool bns,bool bls)
+        {
+                bLabelSign=bls;
+                bNumSign=bns;
+        };
+        void __fastcall SetDrawRect(TRect& OR)
+        {
+                OuterRect = OR;
+        };
+        void __fastcall SetRange(int start,int end)
+        {
+                iDrawRgStart = start;
+                iDrawRgEnd   = end;
+        };
+        void __fastcall SetTopDead(bool bDraw, int iPosi)
+        {
+            bTDCDraw = bDraw;
+            iTDCPosi = iPosi;
+        };
+        void __fastcall SetiCombustionPosi(int iposi)
+        {
+            iCombustionPosi = iposi;
+        };
+        void __fastcall SetiOilPosi(int iposi)
+        {
+            iOilPosi = iposi;
+        };
+        void __fastcall SetBasicFont(   AnsiString& fname,
+                                        int isize,
+                                        bool bbold,
+                                        bool bitalic,
+                                        bool bunderline,
+                                        bool bstrikeout,
+                                        TColor& cl)
+        {
+            strBasicFontName   = fname;
+            iBasicFontSize     = isize;
+            bBasicFSBold       = bbold;
+            bBasicFSItalic     = bitalic;
+            bBasicFSUnderline  = bunderline;
+            bBasicFSStrikeOut  = bstrikeout;
+            clBasicFSColor     = cl;
+        };
+
+        void __fastcall LDraw(TObject *Sender);
+        bool __fastcall ReadAllData(String& fn);
+
+        void __fastcall FreeMemory();
+        bool __fastcall AllocateMemory(int len);
+        void __fastcall SetfYEnlargement(float fy)
+        {
+                fYEnlargement=fy;
+        }
+	void __fastcall AppendDraw(TObject* Sender,String strItem, int iItem);
+	void __fastcall DrawText(TObject* Sender,int iitem);
+	void __fastcall GetCanvas(TObject* Sender);
+    void __fastcall RemoveLevel(void);
+    void __fastcall AppendDraw(TObject* Sender, float* fdata, int ilen,float ifre, int inum);
+
+	void __fastcall AppendDraw(TObject* Sender, float * fData, AnsiString stitle,int iItem,int StartNum,int EndNum);
+    void __fastcall CalculateParameters(void);
+    void __fastcall DrawPT(TObject * Sender, float* fDataX, float * fDataY, int iNum);
+    void __fastcall SetData(float * fdatax, float * fdatay, int istart, int iend,bool btwo);
+    void __fastcall DrawTwoLabel(TObject * Sender);
+    void __fastcall GetNewCoorSegment(float *fxgrid, float *fygrid, int & ixgridnum, int & iygridnum);
+    void __fastcall GetXYGrid(float *idata, int& num,bool bxgrid);
+    void __fastcall GetXYLogGrid(float *idata, int& num, bool bxgrid);
+    void __fastcall SetOriginalMode(float fmin,float fmax,bool bOutMM)
+    {
+        fYDataMax = fmax;
+        fYDataMin = fmin;
+        bMMValue = bOutMM;
+    };
+    void __fastcall iDrawOriginal(TObject* Sender,int * iP,  int istart, int iend,TColor& linecolor);
+    void __fastcall DrawOriginal(TObject* Sender,float * fP,int istart, int iend,TColor& linecolor);
+    void __fastcall lDrawMax(TObject* Sender, MaxInfo* maxinfo, int inum);
+    void __fastcall DrawMaxDetail(TRect& rect, int * idnum, float* ffai, float* fvalue, int num,TColor color);
+    void __fastcall DrawMaxSimple(TRect& rect, int * idnum, float* fvalue, int num,TColor color);
+    void __fastcall SetbDifferentColor(bool bDColor, TColor& cl1, TColor& cl2, TColor& cl3, TColor& cl4);
+    void __fastcall DrawPipeWave(TObject* Sender);
+    void __fastcall Draw3DCoor(void);
+    void __fastcall Draw3D(TObject* Sender, float * fX, float * fY, float** fZ, int iXN, int iYN, l3DInfo* myinfo);
+    void __fastcall SetbTwoInfo(bool bti);
+    void __fastcall DrawBack(TRect& rect, TColor clface, TColor clback, int shift);
+    void __fastcall ShrinkRect(TRect& rect, int ixsize,int iysize);
+    void __fastcall lDrawBasicInfo(TObject* Sender, MaxBuffer& mb,lFileHeadStruct& lfhs);
+    void __fastcall DrawBasicText(TObject* Sender, MaxBuffer& mb,lFileHeadStruct& lfhs);
+    void __fastcall GetTrainInfo(AnsiString& str);
+    void __fastcall SetCurveColor(TColor* cl, int inum);
+    void __fastcall lDrawDetect(TObject* Sender, MaxBuffer& mb,lFileHeadStruct& lfhs);
+    void __fastcall DrawDetect(TObject* Sender, MaxBuffer& mb,lFileHeadStruct& lfhs);
+};
+ 
+class LSimulationCurveDraw: public LDrawCurve
+{
+private:
+        int iMax,iMin;
+        int iPosi; //高压油管压力波的位置
+        bool bShowMode;
+        char *cData;
+
+public:
+        void __fastcall SetiPosi(int pos)
+        {
+                iPosi=pos;
+        };
+        void __fastcall SetbShowMode(bool bsm)
+        {
+                bShowMode=bsm;
+        };
+        __fastcall LSimulationCurveDraw(void);
+        __fastcall ~LSimulationCurveDraw();
+        bool __fastcall ReadPipeData(AnsiString& fn,int num,int icol);
+        void __fastcall GetColumnData(char* str, float& tData, int num);
+        void __fastcall GetData(AnsiString& filename,int& num,int col);
+        void __fastcall DrawPressure(TObject* Sender,AnsiString& epipe,int num,int posi);
+        void __fastcall DrawPumpAndNozzle(TObject * Sender, AnsiString& epump,int num, int column,AnsiString legend);
+        void __fastcall SimpleDraw(TObject* Sender,AnsiString& fn,int num,int icol);
+
+};
+#endif

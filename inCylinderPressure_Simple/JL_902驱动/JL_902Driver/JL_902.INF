@@ -1,0 +1,106 @@
+;; JL_902.inf
+
+;; *********  PLEASE READ ***********
+;; The wizard cannot create exact INF files for all buses and device types.
+;; You may have to make changes to this file in order to get your device to
+;; install. In particular, hardware IDs and logical configurations require
+;; intervention.
+;;
+;; The Win2K DDK documentation contains an excellent INF reference.
+
+;--------- Version Section ---------------------------------------------------
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%ProviderName%
+DriverVer = 3/4/2003,1.00.00.00
+;--------- SourceDiskNames and SourceDiskFiles Section -----------------------
+
+; These sections identify source disks and files for installation.  They are
+; shown here as an example, but commented out.
+
+[SourceDisksNames]
+1 = "Install Disk",Disk1,,
+
+[SourceDisksFiles]
+JL_902.sys = 1
+
+;--------- ClassInstall/ClassInstall32 Section -------------------------------
+
+; Not necessary if using a standard class
+
+; 9X Style
+[ClassInstall]
+Addreg=Class_AddReg
+
+; NT Style
+[ClassInstall32]
+Addreg=Class_AddReg
+
+[Class_AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,USBPD.sys
+;HKR,,,,%DeviceClassName%
+;HKR,,Icon,,"-21"
+
+;--------- DestinationDirs Section -------------------------------------------
+
+[DestinationDirs]
+JL_902_Files_Driver = 10,System32\Drivers
+
+;--------- Manufacturer and Models Sections ----------------------------------
+
+[Manufacturer]
+%MfgName%=Mfg0
+
+[Mfg0]
+%DeviceDesc%=JL_902_DDI, USB\VID_0335&PID_0902
+
+;---------- DDInstall Sections -----------------------------------------------
+; --------- Windows 9X -----------------
+
+; Experimentation has shown that DDInstall root names greater than 19 characters
+; cause problems in Windows 98
+
+[JL_902_DDI]
+CopyFiles=JL_902_Files_Driver
+AddReg=JL_902_9X_AddReg
+
+[JL_902_9X_AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,JL_902.sys
+HKR, "Parameters", "BreakOnEntry", 0x00010001, 0
+; --------- Windows NT -----------------
+
+[JL_902_DDI.NT]
+CopyFiles=JL_902_Files_Driver
+AddReg=JL_902_NT_AddReg
+
+[JL_902_DDI.NT.Services]
+Addservice = JL_902, 0x00000002, JL_902_AddService
+
+[JL_902_AddService]
+DisplayName    = %SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\JL_902.sys
+
+[JL_902_NT_AddReg]
+HKLM, "System\CurrentControlSet\Services\JL_902\Parameters",\
+	"BreakOnEntry", 0x00010001, 0
+
+
+; --------- Files (common) -------------
+
+[JL_902_Files_Driver]
+JL_902.sys
+
+;--------- Strings Section ---------------------------------------------------
+[Strings]
+ProviderName="铁科院机辆所"
+MfgName="铁科院机辆所"
+DeviceDesc="JL_902测试仪"
+SvcDesc="JL_902测试仪"

@@ -1,0 +1,77 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "UnitTrainSelection.h"
+#include "lFormMain.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TFormTrainSelection *FormTrainSelection;
+//---------------------------------------------------------------------------
+__fastcall TFormTrainSelection::TFormTrainSelection(TComponent* Owner)
+    : TForm(Owner)
+{
+    CheckBoxSelected = NULL;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormTrainSelection::FormClose(TObject *Sender,
+      TCloseAction &Action)
+{
+    if(CheckBoxSelected != NULL)
+    {
+        for( int i = 0; i < iTrainNums; i ++ )
+        {
+            if(NULL != CheckBoxSelected[i])
+            {
+                delete CheckBoxSelected[i];
+                CheckBoxSelected[i] = NULL;
+            }
+        }
+
+        delete[] CheckBoxSelected;
+        CheckBoxSelected = NULL;
+    }
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TFormTrainSelection::Button1Click(TObject *Sender)
+{
+    for( int i = 0; i < iTrainNums; i ++)
+    {
+        FormMain->myMTrainInfo[i].bSelected = CheckBoxSelected[i]->Checked;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormTrainSelection::FormActivate(TObject *Sender)
+{
+    int ixstep = 240;
+    int iystep = 24;
+    int ix0    = 15;
+    int iy0    = 25;
+
+    if( CheckBoxSelected == NULL)
+    {
+        if( iTrainNums > 0)
+        {
+            CheckBoxSelected = new TCheckBox*[iTrainNums];
+            for( int i = 0; i < iTrainNums; i++ )
+            {
+                CheckBoxSelected[i] = new TCheckBox(GroupBoxMain->Handle);
+                CheckBoxSelected[i]->Left    = ix0 + (i/12)*ixstep;
+                CheckBoxSelected[i]->Top     = iy0 + (i%12)*iystep;
+                CheckBoxSelected[i]->Width   = 230;
+                CheckBoxSelected[i]->Height  = 24;
+                CheckBoxSelected[i]->Parent  = GroupBoxMain;
+                CheckBoxSelected[i]->Checked = FormMain->myMTrainInfo[i].bSelected;
+                CheckBoxSelected[i]->Caption = FormMain->myMTrainInfo[i].strTrainInfo;
+            }
+        }
+    }
+}
+//---------------------------------------------------------------------------
+

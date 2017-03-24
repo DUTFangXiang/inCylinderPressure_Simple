@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="pCP.exe"/>
+    <OBJFILES value="pCP.obj lFormMain.obj lFileHead.obj UDirectory.obj DrawCoor.obj 
+      UProcessSetup.obj DataProcess.obj UIndicator.obj LPPFDRead.obj lPath.obj 
+      lPrint.obj UGoBack.obj lAbout.obj lFilterSetup.obj USetupColor.obj 
+      UResult.obj UnitFileInfo.obj lFormReport.obj lFormBackup.obj 
+      UnitEnlarge.obj UFormOrderInfo.obj UEngine.obj UnitOption.obj 
+      UnitPcpInfo.obj UnitDataModule.obj UnitAddToBase.obj lDetect.obj 
+      UAnalysisResult.obj lFormStartFace.obj UAllow.obj UnitTrainSelection.obj 
+      UnitTreeview.obj"/>
+    <RESFILES value="pCP.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) lFormMain.dfm UDirectory.dfm UProcessSetup.dfm UIndicator.dfm 
+      lPath.dfm lPrint.dfm UGoBack.dfm lAbout.dfm lFilterSetup.dfm 
+      USetupColor.dfm UResult.dfm UnitFileInfo.dfm lFormReport.dfm 
+      lFormBackup.dfm UnitEnlarge.dfm UFormOrderInfo.dfm UEngine.dfm 
+      UnitOption.dfm UnitPcpInfo.dfm UnitDataModule.dfm UnitAddToBase.dfm 
+      UAnalysisResult.dfm lFormStartFace.dfm UAllow.dfm UnitTrainSelection.dfm 
+      UnitTreeview.dfm"/>
+    <LIBFILES value="JL_902.lib ..\HHHelp\hhctrl.lib"/>
+    <LIBRARIES value="teedb.lib bdertl.lib qrpt.lib adortl.lib vcldb.lib dbrtl.lib bcbsmp.lib 
+      vclx.lib tee.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib tee.lib vclx.lib bcbsmp.lib dbrtl.lib vcldb.lib adortl.lib 
+      qrpt.lib bdertl.lib teedb.lib"/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi dbrtl.bpi vcldb.bpi adortl.bpi ibsmp.bpi 
+      bdertl.bpi vcldbx.bpi qrpt.bpi teeui.bpi teedb.bpi tee.bpi dss.bpi 
+      teeqr.bpi ibxpress.bpi dsnap.bpi vclie.bpi inetdb.bpi inet.bpi nmfast.bpi 
+      webdsnap.bpi bcbie.bpi dclocx.bpi bcb97axserver.bpi bcbsmp.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="pCP.cpp"/>
+    <INCLUDEPATH value="$(BCB)\Imports;&quot;d:\Program Files\Borland\CBuilder5\Projects&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="$(BCB)\Projects\Lib;$(BCB)\Imports;&quot;d:\Program Files\Borland\CBuilder5\Projects&quot;;$(BCB)\lib\obj;$(BCB)\lib;HHhelp"/>
+    <WARNINGS value="-w-par -w-aus"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\Imports -I&quot;d:\Program Files\Borland\CBuilder5\Projects&quot; 
+      -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -H=c:\PROGRA~1\borland\CBUILD~1\lib\vcl60.csm -Hc -Vx -Ve -X- -a8 -b- 
+      -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$D- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;&quot; -H:0x1000000 -Hc:0xF00000 -S:0x800000 -Sc:0x400000 -aa -Tpe -x -Gn -w 
+      -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="pCP.cpp" FORMNAME="" UNITNAME="pCP" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="pCP.res" FORMNAME="" UNITNAME="pCP" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lFormMain.cpp" FORMNAME="FormMain" UNITNAME="lFormMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lFileHead.cpp" FORMNAME="" UNITNAME="lFileHead" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UDirectory.cpp" FORMNAME="FormDirectory" UNITNAME="UDirectory" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DrawCoor.cpp" FORMNAME="" UNITNAME="DrawCoor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UProcessSetup.cpp" FORMNAME="FormProcessSetup" UNITNAME="UProcessSetup" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DataProcess.cpp" FORMNAME="" UNITNAME="DataProcess" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UIndicator.cpp" FORMNAME="FormIndicator" UNITNAME="UIndicator" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LPPFDRead.cpp" FORMNAME="" UNITNAME="LPPFDRead" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lPath.cpp" FORMNAME="FormPath" UNITNAME="lPath" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lPrint.cpp" FORMNAME="FormPrint" UNITNAME="lPrint" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UGoBack.cpp" FORMNAME="FormGoBack" UNITNAME="UGoBack" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lAbout.cpp" FORMNAME="AboutBox" UNITNAME="lAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="JL_902.lib" FORMNAME="" UNITNAME="JL_902" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lFilterSetup.cpp" FORMNAME="FormFilterSetup" UNITNAME="lFilterSetup" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="USetupColor.cpp" FORMNAME="FormSetupColor" UNITNAME="USetupColor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UResult.cpp" FORMNAME="FormResult" UNITNAME="UResult" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFileInfo.cpp" FORMNAME="FormFileInfo" UNITNAME="UnitFileInfo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lFormReport.cpp" FORMNAME="FormReportOut" UNITNAME="lFormReport" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lFormBackup.cpp" FORMNAME="FormBackup" UNITNAME="lFormBackup" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnlarge.cpp" FORMNAME="FormEnlargeView" UNITNAME="UnitEnlarge" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UFormOrderInfo.cpp" FORMNAME="FormOrderInfo" UNITNAME="UFormOrderInfo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UEngine.cpp" FORMNAME="FormEngine" UNITNAME="UEngine" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\HHHelp\hhctrl.lib" FORMNAME="" UNITNAME="hhctrl" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitOption.cpp" FORMNAME="FormOption" UNITNAME="UnitOption" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitPcpInfo.cpp" FORMNAME="FormPcpInfo" UNITNAME="UnitPcpInfo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDataModule.cpp" FORMNAME="DM" UNITNAME="UnitDataModule" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitAddToBase.cpp" FORMNAME="FormPipeBase" UNITNAME="UnitAddToBase" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lDetect.cpp" FORMNAME="" UNITNAME="lDetect" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UAnalysisResult.cpp" FORMNAME="FormAnalysisResult" UNITNAME="UAnalysisResult" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lFormStartFace.cpp" FORMNAME="FormStartFace" UNITNAME="lFormStartFace" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UAllow.cpp" FORMNAME="FormRight" UNITNAME="UAllow" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTrainSelection.cpp" FORMNAME="FormTrainSelection" UNITNAME="UnitTrainSelection" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTreeview.cpp" FORMNAME="FormTV" UNITNAME="UnitTreeview" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=2052
+CodePage=936
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=9
+Item0=$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item1=$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item2=A:\;$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item3=$(BCB)\Imports;C:\tic3x4x\Practice\HeatRR\;E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item4=C:\tic3x4x\Practice\HeatRR\;E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item5=C:\tic3x4x\Practice\HeatRR;E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item6=E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item7=E:\Program Files\Borland\CBuilder5\Projects;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item8=d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=11
+Item0=$(BCB)\Projects\Lib;$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\lib\obj;$(BCB)\lib;HHhelp
+Item1=$(BCB)\Projects\Lib;$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib;HHhelp
+Item2=$(BCB)\Projects\Lib;$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib;E:\mywork\inCylinderPressure_HERB\HHhelp
+Item3=$(BCB)\Projects\Lib;$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item4=A:\;$(BCB)\Projects\Lib;$(BCB)\Imports;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item5=$(BCB)\Projects\Lib;$(BCB)\Imports;C:\tic3x4x\Practice\HeatRR\;E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item6=C:\tic3x4x\Practice\HeatRR\;E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item7=C:\tic3x4x\Practice\HeatRR;E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item8=E:\Program Files\Borland\CBuilder5\Projects\;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item9=E:\Program Files\Borland\CBuilder5\Projects;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+Item10=d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

@@ -1,0 +1,129 @@
+object FormOrderInfo: TFormOrderInfo
+  Left = -14
+  Top = 229
+  Width = 879
+  Height = 282
+  BorderIcons = []
+  Caption = '参数排序'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 0
+    Width = 871
+    Height = 3
+    Cursor = crVSplit
+    Align = alTop
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 3
+    Width = 871
+    Height = 184
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 0
+    object ChartOrder: TChart
+      Left = 0
+      Top = 29
+      Width = 871
+      Height = 155
+      BackWall.Brush.Color = clWhite
+      BackWall.Brush.Style = bsClear
+      Gradient.EndColor = 12910591
+      Gradient.Visible = True
+      Title.Text.Strings = (
+        'TChart')
+      LeftAxis.Labels = False
+      Legend.TextStyle = ltsXValue
+      Legend.TopPos = 6
+      Legend.Visible = False
+      View3D = False
+      Align = alClient
+      TabOrder = 0
+      object Series1: TBarSeries
+        Marks.ArrowLength = 20
+        Marks.Font.Charset = DEFAULT_CHARSET
+        Marks.Font.Color = clMaroon
+        Marks.Font.Height = -11
+        Marks.Font.Name = 'Arial'
+        Marks.Font.Style = []
+        Marks.Style = smsValue
+        Marks.Visible = True
+        SeriesColor = clRed
+        XValues.DateTime = False
+        XValues.Name = 'X'
+        XValues.Multiplier = 1
+        XValues.Order = loAscending
+        YValues.DateTime = False
+        YValues.Name = 'Bar'
+        YValues.Multiplier = 1
+        YValues.Order = loNone
+      end
+    end
+    object Panel2: TPanel
+      Left = 0
+      Top = 0
+      Width = 871
+      Height = 29
+      Align = alTop
+      BevelInner = bvLowered
+      TabOrder = 1
+      object LabelParameter: TLabel
+        Left = 60
+        Top = 8
+        Width = 45
+        Height = 15
+        Caption = '参数：'
+        Font.Charset = GB2312_CHARSET
+        Font.Color = clNavy
+        Font.Height = -15
+        Font.Name = '黑体'
+        Font.Style = []
+        ParentFont = False
+      end
+      object LabelOrder: TLabel
+        Left = 208
+        Top = 8
+        Width = 45
+        Height = 15
+        Caption = '排序：'
+        Font.Charset = GB2312_CHARSET
+        Font.Color = clNavy
+        Font.Height = -15
+        Font.Name = '黑体'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Button1: TButton
+        Left = 4
+        Top = 4
+        Width = 37
+        Height = 23
+        Caption = '隐藏'
+        TabOrder = 0
+        OnClick = Button1Click
+      end
+    end
+  end
+  object SGOrder: TStringGrid
+    Left = 0
+    Top = 187
+    Width = 871
+    Height = 68
+    Align = alBottom
+    ColCount = 17
+    DefaultColWidth = 50
+    DefaultRowHeight = 20
+    RowCount = 3
+    TabOrder = 1
+  end
+end

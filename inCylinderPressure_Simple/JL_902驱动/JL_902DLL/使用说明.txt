@@ -1,0 +1,42 @@
+LX_100.DLL测试软件说明：
+  USB驱动程序LX_100.SYS和安装文件JL-201A.INF  
+  用于对USB进行操作的动态链接库LX_100.DLL
+    LX_100.DLL提供下列函数用于对USB的操作：
+    long WINAPI ReadUsb(long readnum,LPBYTE buf);
+    long WINAPI WriteUsb(long writenum,LPBYTE buf);
+    int  WINAPI OpenUsb(void);
+    void WINAPI CloseUsb(void);
+  程序开始时用OpenUsb(void)打开USB，如果返回值为1，打开成功，否则失败。
+  程序结束时用CloseUsb(void)关闭USB.
+  用ReadUsb(long readnum,LPBYTE buf)从USB端口读取数据，readnum 是一次要读取的字节数(一次不能超过8192个字节),buf 存放读取的数据，函数返回值为实际读取的字节数。
+  用WriteUsb(long writenum,LPBYTE buf)向USB端口写数据，writenum 是一次写的字节数(一次不能超过8192个字节),buf 存放要写的数据，函数返回值为实际写取的字节数。
+  一、从设备中读取文件列表：
+      1.用WriteUsb向USB写64字节数据，
+      字节：
+       1       0xaa
+       2       0x55
+       3       任意值
+       .       .
+       .       .  
+       .       .
+      2.循环调用ReadUsb(64,buf)从USB端口每次读取64字节数据,如果第一字节为0xaa(buf[0]),第二字节为0x55(buf[1])结束。(这是一个等待过程）
+      3.读取文件：每个文件长度为128字节，循环调用ReadUsb(long readnum,LPBYTE buf)从USB端口每次读取128字节数据（ long returnnumber = ReadUsb(128,buf); ),如果返回值returnnumber < 128则说明文件列表读取结束。
+ 二、从设备中读取数据： 
+     1.用WriteUsb向USB写64字节数据，
+      字节：
+       1       0xcc
+       2       0xaa
+       3       文件序号（从0开始）
+       .       任意值
+       .       .  
+       .       .
+    2.循环调用ReadUsb(64,buf)从USB端口每次读取64字节数据,如果第一字节为0xcc(buf[0]),第二字节为0xaa(buf[1])结束。(这是一个等待过程）
+    3. 用ReadUsb(long readnum,LPBYTE buf)从USB端口读取数据，readnum 是一次要读取的字节数(一次不能超过8192个字节),buf 存放读取的数据，函数返回值为实际读取的字节数。(如果文件长度超过8192，可分开读取)
+    4.读取数据结束时，用WriteUsb向USB写64字节数据
+      字节：
+       1       0xbb
+       2       0xaa
+       3       任意值
+       .       .
+       .       .  
+       .       .
